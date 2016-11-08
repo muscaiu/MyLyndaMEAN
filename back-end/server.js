@@ -1,6 +1,7 @@
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
+var mongo = require('mongodb').MongoClient
 
 var server = app.listen(5000, function(){
     console.log('express listening on port', server.address().port)
@@ -20,4 +21,11 @@ app.use(function(req, res, next){
     next()
 })
 
-//tested ok with postman !!!
+//test is the db name
+mongo.connect('mongodb://localhost:27017/test', function(err, db){
+    if(!err){
+        console.log('connected to mongo')
+    }
+    else(console.log(err))
+})
+//before node server.js -> run mongod --dbpath D:\MEAN\MyLyndaMEAN\db
