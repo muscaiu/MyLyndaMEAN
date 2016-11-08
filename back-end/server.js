@@ -3,7 +3,6 @@ var app = express()
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 
-var database
 var Message = mongoose.model('message',{
     msg: String
 })
@@ -34,10 +33,16 @@ app.use(function(req, res, next){
 mongoose.connect('mongodb://localhost:27017/test', function(err, db){
     if(!err){
         console.log('connected to mongo')
-        database = db
+        GetMessages()
     }
     else(console.log(err))
 })
+
+function GetMessages(){
+    Message.find({}).exec(function(err, result){
+        console.log(result)
+    })
+}
 
 //how to test this:
 //restart node server.js and post another message
