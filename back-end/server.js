@@ -13,6 +13,8 @@ var server = app.listen(5000, function(){
 
 app.use(bodyParser.json())
 
+app.get('/api/message', GetMessages)
+
 app.post('/api/message', function(req, res){
     console.log(req.body)
     
@@ -33,16 +35,17 @@ app.use(function(req, res, next){
 mongoose.connect('mongodb://localhost:27017/test', function(err, db){
     if(!err){
         console.log('connected to mongo')
-        GetMessages()
     }
     else(console.log(err))
 })
 
-function GetMessages(){
+function GetMessages(req, res){
     Message.find({}).exec(function(err, result){
-        console.log(result)
+        res.send(result)
     })
 }
 
 //how to test this:
-//restart node server.js and post another message
+//use http://localhost:5000/api/message 
+//OR
+//use postman with the GET action
