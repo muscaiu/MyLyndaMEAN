@@ -25,7 +25,13 @@ app.use(function(req, res, next){
 mongo.connect('mongodb://localhost:27017/test', function(err, db){
     if(!err){
         console.log('connected to mongo')
+        db.collection('messages').insertOne({'msg':'test'})
     }
     else(console.log(err))
 })
+
+//how to test this:
 //before node server.js -> run mongod --dbpath D:\MEAN\MyLyndaMEAN\db
+//mongo
+//show collections
+//db.messages.find()
