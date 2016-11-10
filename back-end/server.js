@@ -40,6 +40,6 @@ mongoose.connect('mongodb://localhost:27017/test', function(err, db){
     else(console.log(err))
 })
 
-var server = app.listen(5000, function(){
+var server = app.listen(8080, function(){
     console.log('express listening on port', server.address().port)
 })
