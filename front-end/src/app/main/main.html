@@ -4,12 +4,21 @@
 		<div class="panel-heading">Post a Message</div>
 		<div class="panel-body">
 			<div class="input-group">
-				<textarea ng-model="main.message" class="form-control custom-control" rows="3" style="resize:none">
-        </textarea>
+				<textarea ng-model="main.message" class="form-control custom-control" 
+						  rows="3" style="resize:none"></textarea>
 				<!--It will look in main controller and do the postMessage function-->
 				<span ng-click="main.postMessage()" class="input-group-addon btn btn-primary">
           Post
         </span>
+			</div>
+		</div>
+		<div class="panel panel-default">
+						<div class="panel-heading">Search</div>
+			<div class="panel-body">
+				<div id="searchArea">
+					<input ng-model="searchText" class="form-control"
+					type="search" name="search" id="search" placeholder="search...">
+				</div>
 			</div>
 		</div>
 
@@ -17,12 +26,12 @@
 			<div class="panel-heading">Messages</div>
 			<div class="panel-body">
 				<div class="list-group">
-					<li class="list-group-item" ng-repeat="message in main.messages">
+					<li class="list-group-item" ng-repeat="message in main.messages | orderBy:searchText | filter:searchText">
 						{{ message.msg }}
 					</li>
 				</div>
 			</div>
 		</div>
 	</div>
-  
+
 </div>

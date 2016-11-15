@@ -1,5 +1,5 @@
 export class MainController {
-  constructor ($http) {
+  constructor ($scope, $http) {
     'ngInject';
 
     this.$http = $http
@@ -16,5 +16,6 @@ export class MainController {
 
   postMessage(){
     this.$http.post('http://54.229.174.169:8080/api/message', {msg:this.message})
+    this.message = ''
   }
 }
